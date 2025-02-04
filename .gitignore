@@ -1,0 +1,43 @@
+# Ignore el entorno virtual
+venv/
+.env
+.env.local
+*.env
+*.venv
+
+# Ignore archivos de caché y bytecode de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de bases de datos locales
+db.sqlite3
+*.sqlite3
+
+# Configuración de PyCharm
+.idea/
+
+# Archivos de logs y dumps
+*.log
+*.pot
+*.pyc
+
+# Archivos estáticos y de medios generados
+staticfiles/
+media/
+
+# Archivos de compilación y dependencias
+node_modules/
+dist/
+build/
+
+# Ignore coverage y reportes de pruebas
+.coverage
+htmlcov/
+pytest_cache/
+
+# Archivos de Docker que no deben subirse
+.dockerignore
+docker-compose.override.yml
+
+# Configuración de VSCode
+.vscode/
