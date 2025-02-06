@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend_django:
+    build: ./backend_django
+    container_name: backend_django
+    ports:
+      - "8000:8000"
+    depends_on:
+      db_postgres:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - ./backend_django:/app
+    restart: always
+
+  db_postgres:
+    image: postgres:15-alpine
+    container_name: db_postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
