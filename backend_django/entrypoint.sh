@@ -11,6 +11,10 @@ echo "Base de datos disponible!"
 echo "Aplicando migraciones..."
 python manage.py migrate --noinput
 
+# Recopilar archivos estáticos
+echo "Recopilando archivos estáticos..."
+python manage.py collectstatic --noinput
+
 # Ejecutar Gunicorn
 echo "Iniciando Gunicorn..."
 exec gunicorn --bind 0.0.0.0:8000 backend_django.wsgi:application
