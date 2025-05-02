@@ -14,7 +14,8 @@ RUN apk add --no-cache \
     python3-dev \
     jpeg-dev \
     zlib-dev \
-    build-base && \
+    build-base \
+    netcat-openbsd && \
     pip install --no-cache-dir --upgrade pip
 
 # Establecer el directorio de trabajo dentro del contenedor
@@ -30,8 +31,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Copiar el script de entrada
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
+# Asegurar finales de línea correctos (LF) y permisos de ejecución
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 # Comando por defecto al ejecutar el contenedor
 ENTRYPOINT ["/entrypoint.sh"]
