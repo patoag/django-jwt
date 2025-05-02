@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from authentication.views import CreateUserView
+from django.conf import settings
+from django.conf.urls.static import static
+from authentication.views import CreateUserView, UserViewSet, ProfileViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view as drf_schema_view
+from rest_framework.routers import DefaultRouter
+
+# Configuramos el router para los ViewSets
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'profiles', ProfileViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,20 +35,20 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="get_token"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path("api-auth/", include("rest_framework.urls")),
-    #path("api/", include("authentication.urls")),
     
-    # Documentación CoreAPI con configuración mejorada
-    path('api/schema/', drf_schema_view(
-        title='Django JWT API',
-        description='API para autenticación con JWT',
-        version='1.0.0',
-        public=True,
-    ), name='schema'),
+    # Incluimos los endpoints del router (CRUD de usuarios)
+    path('api/', include(router.urls)),
+    
+    # Documentación de la API simplificada
     path('api/docs/', include_docs_urls(
         title='Django JWT API', 
         description='API para autenticación con JWT',
-        schema_url='/api/schema/',
+        public=True,
         authentication_classes=[],
         permission_classes=[],
     )),
 ]
+
+# Configuración para servir archivos de medios en desarrollo
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
