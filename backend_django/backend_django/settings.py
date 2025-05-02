@@ -39,7 +39,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
+    "DEFAULT_METADATA_CLASS": "rest_framework.metadata.SimpleMetadata"
 }
 
 SIMPLE_JWT = {
@@ -59,7 +60,6 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'corsheaders',
-    'drf_yasg',
 ]
 
 MIDDLEWARE = [

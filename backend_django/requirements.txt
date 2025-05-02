@@ -1,18 +1,40 @@
-asgiref==3.8.1
-coreapi==2.3.3
-coreschema==0.0.4
+# Dependencias principales de Django
 Django==5.1.5
-django-cors-headers==4.6.0
+asgiref==3.8.1
+sqlparse==0.5.3
+pytz==2024.2
+
+# Base de datos y conexión PostgreSQL
+psycopg2==2.9.10
+
+# Autenticación y seguridad JWT
 djangorestframework==3.15.2
 djangorestframework_simplejwt==5.4.0
-drf-yasg==1.21.7
-gunicorn==23.0.0
-markupsafe==2.1.5
-packaging==24.2
-psycopg2==2.9.10
 PyJWT==2.10.1
+
+# Variables de entorno y configuración
 python-dotenv==1.0.1
-pytz==2024.2
-sqlparse==0.5.3
-typing_extensions==4.12.2
+
+# Gestión de CORS para peticiones entre dominios
+django-cors-headers==4.6.0
+
+# Servicio web y archivos estáticos
+gunicorn==23.0.0
 whitenoise==6.6.0
+packaging==24.2
+typing_extensions==4.12.2
+
+# Documentación de API (CoreAPI)
+coreapi==2.3.3
+coreschema==0.0.4
+pyyaml>=5.1.0
+
+# Dependencias secundarias para documentación API
+Jinja2>=3.0.0
+MarkupSafe>=2.0.0
+uritemplate>=3.0.0
+itypes>=1.1.0
+requests>=2.25.0
+certifi>=2023.7.22
+charset-normalizer>=2.0.0
+idna>=2.8
