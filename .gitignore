@@ -1,47 +1,97 @@
-# Ignore el entorno virtual
+# ========== Django & Python ==========
+
+# Entornos virtuales (TODOS los patrones posibles)
 venv/
+.venv/
+env/
+.env/
+ENV/
+pyenv/
+pipenv/
+conda/
+anaconda/
+
+# Archivos de variables de entorno
 .env
 .env.local
+.env.development
+.env.production
 *.env
-*.venv
 
-# Ignore archivos de caché y bytecode de Python
+# Archivos de caché y bytecode de Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
+.Python
 
 # Archivos de bases de datos locales
 db.sqlite3
 *.sqlite3
 
-# Configuración de PyCharm
+# Directorios de migraciones generados (si se requiere)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# Archivos estáticos y media (generados en producción/desarrollo)
+/staticfiles/
+/media/
+
+# ========== Herramientas y entornos de desarrollo ==========
+
+# IDEs y editores
 .idea/
+.vscode/
+*.sublime-*
+*.swp
+*~
 
 # Archivos de logs y dumps
 *.log
 *.pot
 *.pyc
+logs/
 
-# Archivos estáticos y de medios generados
-staticfiles/
-media/
-
-# Archivos de compilación y dependencias
+# Archivos de compilación y dependencias frontend
 node_modules/
 dist/
 build/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Ignore coverage y reportes de pruebas
+# ========== Testing y CI ==========
+
+# Reportes de cobertura y pruebas
 .coverage
+.coverage.*
+coverage.xml
+coverage.json
 htmlcov/
-pytest_cache/
+.pytest_cache/
+.tox/
 
-# Archivos de Docker que no deben subirse
+# ========== Docker ==========
+
+# Archivos de configuración Docker que no deben subirse
 .dockerignore
 docker-compose.override.yml
 
-# Configuración de VSCode
-.vscode/
+# ========== OS específicos ==========
 
-.env
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-venv/
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ========== Otros ==========
+
+# Archivos generados por herramientas específicas
+celerybeat-schedule
+celerybeat.pid
