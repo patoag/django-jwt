@@ -1,25 +1,30 @@
-# 📌 Proyecto Django con Docker, PostgreSQL y JWT Authentication
+# 🚀 Backend Django Avanzado con Docker, JWT y UUID
 
-Este proyecto es una plantilla de aplicación Django configurada para ejecutarse dentro de contenedores Docker. Utiliza PostgreSQL como base de datos, autenticación JWT para APIs seguras, y está estructurado para un despliegue eficiente y modular.
+Este proyecto es una base completa y lista para usar de un backend Django dockerizado. Diseñado para servir como punto de partida sólido para cualquier desarrollador que necesite un backend robusto con características modernas. Incluye PostgreSQL como base de datos, autenticación JWT con gestión avanzada de usuarios mediante UUID, documentación de API integrada, y está optimizado para desarrollo y producción.
 
 ---
 
 ## 📂 Estructura del Proyecto
 
 ```
-📦 proyecto
-├── 📂 backend_django         # Carpeta del proyecto Django
-│   ├── 📜 Dockerfile         # Dockerfile para construir la imagen del backend
-│   ├── 📜 manage.py          # Archivo de gestión de Django
-│   ├── 📂 backend_django     # Configuración del proyecto Django
-│   ├── 📂 authentication     # App de autenticación con JWT
-│   ├── 📜 requirements.txt   # Dependencias del proyecto
-│   ├── 📜 entrypoint.sh      # Script de inicialización para Docker
+📦 django-jwt
+├── 📂 backend_django         # Proyecto Django principal
+│   ├── 📜 Dockerfile         # Configuración de la imagen Docker
+│   ├── 📜 manage.py          # CLI de Django
+│   ├── 📂 backend_django     # Configuración principal del proyecto
+│   │   ├── 📜 settings.py    # Configuración con variables de entorno
+│   │   ├── 📜 urls.py        # Endpoints y documentación API
+│   ├── 📂 authentication     # Sistema avanzado de autenticación
+│   │   ├── 📜 models.py      # Modelos con UUID y perfiles
+│   │   ├── 📜 views.py       # ViewSets para API RESTful
+│   │   ├── 📜 serializers.py # Serialización para API
+│   ├── 📂 media              # Almacenamiento de archivos de usuario
+│   ├── 📂 static             # Archivos estáticos
 │   ├── 📂 staticfiles        # Archivos estáticos compilados
-│   ├── 📂 static             # Archivos estáticos del proyecto
-├── 📜 docker-compose.yml     # Configuración de servicios con Docker Compose
-├── 📜 .env                   # Variables de entorno (no incluir en repositorio)
-├── 📜 .dockerignore          # Archivos y carpetas a ignorar en Docker
+│   ├── 📜 requirements.txt   # Dependencias organizadas por categorías
+│   ├── 📜 entrypoint.sh      # Automatización de inicialización
+├── 📜 docker-compose.yml     # Orquestación de servicios
+├── 📜 .env                   # Variables de entorno (no incluir en VCS)
 ```
 
 ---
@@ -27,11 +32,11 @@ Este proyecto es una plantilla de aplicación Django configurada para ejecutarse
 ## 🛠️ Configuración del Entorno
 
 ### 📌 1. Crear el archivo `.env`
-Antes de ejecutar el proyecto, crea un archivo `.env` en la raíz del proyecto con el siguiente formato:
+Antes de ejecutar el proyecto, crea un archivo `.env` en la raíz con el siguiente contenido:
 
 ```ini
 # Configuración de Django
-DJANGO_SECRET_KEY=django-insecure-clave-segura-personalizada
+SECRET_KEY=tu-clave-secreta-compleja-y-unica
 DEBUG=True
 ALLOWED_HOSTS=*
 
@@ -43,7 +48,7 @@ POSTGRES_HOST=db_postgres
 POSTGRES_PORT=5432
 ```
 
-> ⚠️ **Nota:** No compartas este archivo públicamente, ya que contiene información sensible. Asegúrate de añadir `.env` a tu archivo `.gitignore`.
+> 🔒 **Importante:** El archivo `.env` ya está excluido en `.gitignore` para proteger tus credenciales.
 
 ---
 
@@ -111,41 +116,64 @@ docker-compose exec backend_django python manage.py shell -c "from django.contri
 
 ---
 
-## 🔑 Endpoints de Autenticación JWT
+## 🔑 API RESTful y Endpoints
 
-Este proyecto incluye autenticación JWT lista para usar:
+### Autenticación y Gestión de Usuarios
 
-- **Registro de usuario**: `/api/user/register/`
-- **Obtener token**: `/api/token/`
-- **Refrescar token**: `/api/token/refresh/`
+- **Registro**: `POST /api/user/register/`
+- **Obtener token JWT**: `POST /api/token/`
+- **Refrescar token**: `POST /api/token/refresh/`
+- **Gestión de usuarios completa**:
+  - Listar usuarios: `GET /api/users/`
+  - Obtener usuario por ID: `GET /api/users/{id}/`
+  - Obtener usuario por UUID: `GET /api/users/{uuid}/`
+  - Detalles del usuario actual: `GET /api/users/me/`
+  - Actualizar perfil propio: `PATCH /api/users/update_me/`
 
-Para usar la autenticación en tus solicitudes HTTP, incluye el token en el encabezado:
+### Perfiles de Usuario
+
+- **Listar perfiles**: `GET /api/profiles/`
+- **Obtener perfil por UUID**: `GET /api/profiles/{uuid}/`
+
+### Uso de JWT en Peticiones
 
 ```
 Authorization: Bearer <tu-token-jwt>
 ```
+
+### Documentación Interactiva
+
+- **Documentación completa**: `/api/docs/`
 
 ---
 
 ## 📌 Acceso a la Aplicación
 
 - **Panel de Administración**: http://localhost:8000/admin/
-- **API Django Rest Framework**: http://localhost:8000/api/
-- **Base de datos PostgreSQL**: Disponible en `localhost:5433`
+- **API RESTful**: http://localhost:8000/api/
+- **Documentación API**: http://localhost:8000/api/docs/
+- **Base de datos PostgreSQL**: `localhost:5433` (usar credenciales del `.env`)
 
-Si deseas acceder a la base de datos desde un cliente externo, usa las credenciales definidas en el archivo `.env`.
+> ℹ️ Si implementas un frontend, puedes conectarlo fácilmente a estos endpoints.
 
 ---
 
 ## 🧩 Características Principales
 
-- **Django 5.1+**: Framework web de Python de alto nivel
-- **PostgreSQL**: Base de datos relacional robusta
-- **JWT Authentication**: Autenticación segura para APIs
-- **Docker & Docker Compose**: Contenerización y orquestación
-- **WhiteNoise**: Servicio optimizado de archivos estáticos
-- **Gunicorn**: Servidor WSGI para entornos de producción
-- **Django REST Framework**: Construcción de APIs RESTful
+- **Django 5.1+**: Framework web de Python moderno y mantenido
+- **PostgreSQL**: Base de datos relacional de alto rendimiento
+- **Sistema de Usuarios Avanzado**:
+  - Identificación mediante UUID (no secuencial ni predecible)
+  - Perfiles de usuario extensibles con avatares
+  - Endpoints completos para frontend (CRUD)
+- **Autenticación JWT**: Tokens seguros con refresh automático
+- **Documentación API Integrada**: Endpoints autodocumentados
+- **Docker y Docker Compose**: Entorno consistente y reproducible
+- **Optimizado para Producción**:
+  - Gunicorn como servidor WSGI de alto rendimiento
+  - WhiteNoise para servir archivos estáticos eficientemente
+  - Variables de entorno para configuración segura
+- **REST API Completa**: Endpoints listos para consumir desde cualquier frontend
 
 ---
 
@@ -180,10 +208,21 @@ docker-compose exec db_postgres psql -U $POSTGRES_USER -d $POSTGRES_DB
 
 ---
 
-## 📚 Recursos Adicionales
-- [Documentación oficial de Django](https://docs.djangoproject.com/)
-- [Documentación de Django REST Framework](https://www.django-rest-framework.org/)
-- [Documentación de Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/)
-- [Guía de Docker](https://docs.docker.com/)
-- [Guía de PostgreSQL](https://www.postgresql.org/docs/)
+## 💡 Plantilla para Tu Próximo Proyecto
+
+Este proyecto está diseñado como base sólida para cualquier aplicación que requiera un backend robusto. Está pensado para ser:
+
+- **Extensible**: Añade nuevas apps y funcionalidades fácilmente
+- **Seguro**: Implementa buenas prácticas de seguridad desde el inicio
+- **Escalable**: Diseñado para crecer con tu aplicación
+- **Moderno**: Utiliza UUID para mayor seguridad en las IDs
+- **Listo para frontend**: API completa documentada
+
+## 📚 Recursos y Documentación
+
+- [Django](https://docs.djangoproject.com/) - Framework web
+- [Django REST Framework](https://www.django-rest-framework.org/) - API RESTful
+- [Simple JWT](https://django-rest-framework-simplejwt.readthedocs.io/) - Autenticación
+- [Docker](https://docs.docker.com/) - Contenedorización
+- [PostgreSQL](https://www.postgresql.org/docs/) - Base de datos
 
