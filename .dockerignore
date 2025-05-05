@@ -1,0 +1,98 @@
+# Archivos Git
+.git
+.gitignore
+.github
+
+# Entornos virtuales (todos los patrones posibles)
+venv/
+.venv/
+env/
+.env/
+ENV/
+pyenv/
+pipenv/
+
+# Archivos de desarrollo y pruebas
+.coverage
+htmlcov/
+.pytest_cache/
+pytest.ini
+.tox/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.coverage.*
+coverage.xml
+*.cover
+
+# Documentación
+docs/
+README.md
+*.rst
+*.md
+LICENSE
+
+# Archivos de configuración y logs
+.env
+.env.*
+*.log
+logs/
+*.pot
+
+# Archivos y directorios de IDE/Editor
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*~
+
+# Archivos específicos de sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Archivos relacionados con frontend
+node_modules/
+dist/
+build/
+*.min.js
+*.min.css
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos multimedia y estáticos (se sirven desde volúmenes)
+media/
+*/media/
+static/
+*/static/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.JPG
+*.JPEG
+*.PNG
+*.GIF
+*.BMP
+*.svg
+*.pdf
+
+# Archivos específicos de Django
+db.sqlite3
+*.sqlite3
+
+# Docker-related
+docker-compose.override.yml
+
+# Otros archivos que no son necesarios en la imagen
+Dockerfile*
+docker-compose*
+.dockerignore

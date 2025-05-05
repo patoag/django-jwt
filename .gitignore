@@ -35,7 +35,24 @@ db.sqlite3
 
 # Archivos estáticos y media (generados en producción/desarrollo)
 /staticfiles/
-/media/
+staticfiles/
+media/
+*/media/
+*/media/**/*
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.JPG
+*.JPEG
+*.PNG
+*.GIF
+*.BMP
+*.TIFF
+*.ICO
 
 # ========== Herramientas y entornos de desarrollo ==========
 
@@ -74,7 +91,6 @@ htmlcov/
 # ========== Docker ==========
 
 # Archivos de configuración Docker que no deben subirse
-.dockerignore
 docker-compose.override.yml
 
 # ========== OS específicos ==========
